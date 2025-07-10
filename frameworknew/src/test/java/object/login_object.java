@@ -8,17 +8,12 @@ import org.openqa.selenium.support.PageFactory;
 public class login_object {
 	
 	WebDriver driver;
-	
-	
-	
+
 	login_object(WebDriver driver){
 		this.driver=driver;
 		PageFactory.initElements(driver, null);
 		
 	}
-	
-
-	
 	
 	@FindBy(xpath="")
 	WebElement a;
