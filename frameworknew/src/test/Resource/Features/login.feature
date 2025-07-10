@@ -10,6 +10,7 @@ Feature: Title of your feature
   @tag1
   Scenario: Login into page
   	Given Verify the title
+  	And Close browser
   	
   	
   	
