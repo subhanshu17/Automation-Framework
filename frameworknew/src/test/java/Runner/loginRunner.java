@@ -1,16 +1,20 @@
 package Runner;
 
+
 import org.junit.runner.RunWith;
+
 import io.cucumber.junit.*;
 
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-    features = "src/main/Feature/first",
-  glue = {"stepDefinitions"},
+    features = "src/test/Resource/login",
+  glue = {"stepDefinition"},
    plugin = {"pretty", "html:target/cucumber-report.html"},
     monochrome = true,
-    tags= "@first"
+    tags= "@tag1"
 )
-public class runner {
+
+public class loginRunner {
+
 }
