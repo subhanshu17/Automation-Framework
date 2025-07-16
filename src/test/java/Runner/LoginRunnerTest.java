@@ -8,13 +8,13 @@ import io.cucumber.testng.CucumberOptions;
 
 //@RunWith(Cucumber.class)
 @CucumberOptions(
-    features = "src/test/Resource/Features",
+    features = "src/test/resources/features",
   glue = {"stepdefiniation"},
 		  plugin = {"pretty","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm" },
     monochrome = true,
-    tags= "@tag1"
+    tags= "@test"
 )
 
-public class loginRunner extends AbstractTestNGCucumberTests {
+public class LoginRunnerTest extends AbstractTestNGCucumberTests {
 
 }

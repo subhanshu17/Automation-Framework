@@ -7,60 +7,55 @@
   <artifactId>frameworknew</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-  <name>frameworknew</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
-
-  <properties>
+ <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>17</maven.compiler.release>
-     <allure.version>2.24.0</allure.version>
-     <aspectj.version>1.9.20.1</aspectj.version>
+    <aspectj.version>1.9.20.1</aspectj.version>
+    <allure.version>2.24.0</allure.version>
   </properties>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.junit</groupId>
-        <artifactId>junit-bom</artifactId>
-        <version>5.11.0</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      
-       <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-bom</artifactId>
-            <version>${allure.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-      
-     
-    </dependencies>
-  </dependencyManagement>
+
 
   <dependencies>
-   <dependency>
-        <groupId>org.testng</groupId>
-        <artifactId>testng</artifactId>
-        <version>7.10.1</version>
-        <scope>test</scope>
+  
+  <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>7.15.0</version>
     </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-testng</artifactId>
+      <version>7.15.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.10.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber7-jvm</artifactId>
+      <version>${allure.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjweaver</artifactId>
+      <version>${aspectj.version}</version>
+    </dependency>
+   
   <dependency>
         <groupId>io.qameta.allure</groupId>
         <artifactId>allure-junit-platform</artifactId>
         <scope>test</scope>
-    </dependency>
-  
-  <dependency>
-        <groupId>io.qameta.allure</groupId>
-        <artifactId>allure-cucumber7-jvm</artifactId>
-        <scope>test</scope>
+		 <version>2.28.1</version>
     </dependency>
    <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit5</artifactId>
+                    <version>2.28.1</version>
+
             </dependency>
  
     <!-- Allure TestNG Adapter -->
@@ -76,20 +71,6 @@
     <version>2.25.0</version>
 </dependency>
 
-  
-   <dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-testng</artifactId>
-    <version>7.15.0</version>
-  </dependency>  
-  
-  <dependency>
-    <groupId>org.testng</groupId>
-    <artifactId>testng</artifactId>
-    <version>7.10.1</version>
-    <scope>test</scope>
-  </dependency>
-
   <dependency>
     <groupId>io.cucumber</groupId>
     <artifactId>cucumber-junit</artifactId>
@@ -97,40 +78,34 @@
     <scope>test</scope>
   </dependency>
 
-  <!-- Cucumber Java -->
-  <dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-java</artifactId>
-    <version>7.15.0</version>
-  </dependency>
-
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <scope>test</scope>
+              <version>5.11.0</version>
+
     </dependency>
     <!-- Optionally: parameterized tests support -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
       <scope>test</scope>
+              <version>5.11.0</version>
+
     </dependency>
-    
-    <dependency>
-		<groupId>junit</groupId>
-		<artifactId>junit</artifactId>
-		<version>4.13.2</version>
-		<scope>test</scope>
-	</dependency>
-	
+  
 	   <dependency>
                 <groupId>org.junit.vintage</groupId>
                 <artifactId>junit-vintage-engine</artifactId>
                 <scope>test</scope>
+                        <version>5.11.0</version>
+
             </dependency>
             <dependency>
     <groupId>io.qameta.allure</groupId>
     <artifactId>allure-junit4</artifactId>
+    <version>2.29.1</version>
+    <scope>test</scope>
 </dependency>
 	
 <!--  Selenium  -->
@@ -143,67 +118,39 @@
   </dependencies>
 
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-      <plugins>
-             
-
-      <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-surefire-plugin</artifactId>
-    <version>3.1.2</version>
-    <configuration>
-    <suiteXmlFiles>
-                    <suiteXmlFile>testng.xml</suiteXmlFile>
-                </suiteXmlFiles>
+  <plugins>
+    <!-- Surefire Plugin to pick testng.xml -->
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <version>3.1.2</version>
+      <configuration>
+        <suiteXmlFiles>
+          <suiteXmlFile>testng.xml</suiteXmlFile>
+        </suiteXmlFiles>
         <argLine>
-            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
         </argLine>
-    </configuration>
-    <dependencies>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit4-aspect</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-</plugin>
-       
-        <plugin>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-maven</artifactId>
-            <version>2.11.2</version>
-        </plugin>
-        <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-surefire-plugin</artifactId>
-    <version>3.1.2</version>
-</plugin>
-<plugin>
-    <groupId>io.qameta.allure</groupId>
-    <artifactId>allure-maven</artifactId>
-    <version>2.11.2</version>
-    <executions>
+      </configuration>
+    </plugin>
+    
+    <plugin>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-maven</artifactId>
+      <version>2.11.2</version>
+      <executions>
         <execution>
-            <id>allure-report</id>
-            <phase>verify</phase> <!-- runs after test -->
-            <goals>
-                <goal>report</goal>
-            </goals>
-            
+          <id>allure-report</id>
+          <phase>verify</phase>
+          <goals>
+            <goal>report</goal>
+          </goals>
         </execution>
-        
-    </executions>
-    <configuration>
-    <reportDirectory>target/allure-report</reportDirectory>
-</configuration>
-</plugin>
-
-      </plugins>
-    </pluginManagement>
-  </build>
+      </executions>
+      <configuration>
+        <reportDirectory>target/allure-report</reportDirectory>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
 </project>

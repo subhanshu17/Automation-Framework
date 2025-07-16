@@ -1,13 +1,14 @@
 
 
-Feature: Title of your feature
+Feature: new
+
   
   Background:
   		Given Open URL
   		
   		
 
-  @tag1
+  @test
   Scenario: Login into page
   	Given Verify the title
   	And Close browser

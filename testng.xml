@@ -2,7 +2,7 @@
 <suite name="Cucumber Test Suite">
   <test name="Cucumber Test">
     <classes>
-      <class name="Runner.loginRunner"/>
+      <class name="Runner.LoginRunnerTest"/>
     </classes>
   </test>
 </suite>
